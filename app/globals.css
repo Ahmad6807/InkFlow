@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+/* Dark mode is driven by the `dark` class on <html>, toggled by the header control. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* Native controls (select menus, range tracks, scrollbars) follow the theme too. */
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background-color: #f1f5f9;
+}
+
+.dark body {
+  background-color: #020617;
+}
+
+/*
+ * Styles shared by the rendered pages and the hidden pagination measuring
+ * container (lib/pagination.ts). Both must match exactly, otherwise the measured
+ * split points would not line up with the pages.
+ */
+.inkflow-content {
+  overflow-wrap: break-word;
+  /* Keep typed indentation and runs of spaces instead of collapsing them, both
+     on the page and in the hidden measuring container used for pagination. */
+  white-space: pre-wrap;
+}
+
+.inkflow-content p {
+  margin: 0 0 0.65em;
+}
+
+.inkflow-content p:empty {
+  min-height: 1em;
+}
+
+.inkflow-content h1,
+.inkflow-content h2,
+.inkflow-content h3 {
+  margin: 0.6em 0 0.3em;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.inkflow-content h1 {
+  font-size: 1.7em;
+}
+
+.inkflow-content h2 {
+  font-size: 1.4em;
+}
+
+.inkflow-content h3 {
+  font-size: 1.15em;
+}
+
+.inkflow-content ul,
+.inkflow-content ol {
+  margin: 0 0 0.65em;
+  padding-left: 1.6em;
+}
+
+.inkflow-content ul {
+  list-style: disc;
+}
+
+.inkflow-content ol {
+  list-style: decimal;
+}
+
+.inkflow-content li {
+  margin: 0.1em 0;
+}
+
+.inkflow-content li > p {
+  margin: 0;
+}
+
+.inkflow-content blockquote {
+  margin: 0 0 0.65em;
+  padding-left: 0.9em;
+  border-left: 3px solid rgba(100, 116, 139, 0.45);
+}
+
+.inkflow-content table {
+  width: 100%;
+  margin: 0 0 0.65em;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.inkflow-content th,
+.inkflow-content td {
+  border: 1px solid rgba(100, 116, 139, 0.45);
+  padding: 0.3em 0.5em;
+  text-align: left;
+  vertical-align: top;
+}
+
+.inkflow-content th p,
+.inkflow-content td p {
+  margin: 0;
+}
+
+.inkflow-content th {
+  font-weight: 700;
+}
+
+.inkflow-content a {
+  text-decoration: underline;
+}
+
+/*
+ * Shapes: editable blocks with an outline. Rectangles and ellipses use CSS
+ * borders, the path shapes use a background SVG, so the editor, the page and
+ * the html2canvas export all draw the same outline.
+ */
+.inkflow-shape {
+  /* Text sits in the middle of the shape, horizontally and vertically. */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 0 0.65em;
+  min-height: 96px;
+  padding: 14px 18px;
+  text-align: center;
+}
+
+.inkflow-shape p {
+  margin: 0;
+}
+
+.inkflow-shape p + p {
+  margin-top: 0.35em;
+}
+
+.inkflow-shape[data-shape="rectangle"] {
+  border: 1.5px solid rgba(100, 116, 139, 0.9);
+}
+
+.inkflow-shape[data-shape="rounded"] {
+  border: 1.5px solid rgba(100, 116, 139, 0.9);
+  border-radius: 12px;
+}
+
+.inkflow-shape[data-shape="ellipse"] {
+  border: 1.5px solid rgba(100, 116, 139, 0.9);
+  border-radius: 50%;
+  padding-left: 14%;
+  padding-right: 14%;
+}
+
+.inkflow-shape[data-shape="triangle"] {
+  padding: 24px 22px;
+}
+
+.inkflow-shape[data-shape="diamond"] {
+  padding: 24px 17%;
+}
+
+.inkflow-shape[data-shape="arrow"] {
+  padding: 14px 20px;
+}
+
+.inkflow-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 0 0.65em;
+}
